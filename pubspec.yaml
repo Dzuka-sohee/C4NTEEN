@@ -1,0 +1,54 @@
+name: c4nteen
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  animated_notch_bottom_bar: ^1.0.3 
+  intl: ^0.18.0
+  url_launcher: ^6.2.2
+  google_sign_in: ^6.2.1
+
+
+  cupertino_icons: ^1.0.8
+  get: ^4.7.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^6.0.0
+
+
+flutter:
+
+ 
+  uses-material-design: true
+  
+  assets:
+  - assets/images/Logo C4NTEEN.png
+  - assets/images/absenn.jpg
+  - assets/images/pastel.png
+  - assets/images/ayamgeprek.png
+  - assets/images/esteh.png
+  - assets/images/mieayam.png
+  - assets/images/google.png
+
+  fonts:
+    - family: Baloo 2
+      fonts:
+        - asset: fonts/Baloo2-Regular.ttf
+        - asset: fonts/Baloo2-Bold.ttf
+        - asset: fonts/Baloo2-Medium.ttf
+        - asset: fonts/Baloo2-SemiBold.ttf
+        - asset: fonts/Baloo2-ExtraBold.ttf
+    
