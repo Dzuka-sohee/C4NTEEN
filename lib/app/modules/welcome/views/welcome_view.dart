@@ -8,7 +8,7 @@ class WelcomeView extends GetView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color(0xFFFFF5F5),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

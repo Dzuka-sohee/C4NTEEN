@@ -7,9 +7,6 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    // Pastikan controller ter-inisialisasi
-    final ProfileController c = Get.put(ProfileController());
-    
     return Scaffold(
       backgroundColor: const Color(0xFFFFECC0),
       body: SafeArea(
@@ -26,7 +23,7 @@ class ProfileView extends GetView<ProfileController> {
                     Stack(
                       clipBehavior: Clip.none,
                       children: [
-                        Container(
+                        Obx(() => Container(
                           width: 100,
                           height: 100,
                           decoration: BoxDecoration(
@@ -35,14 +32,14 @@ class ProfileView extends GetView<ProfileController> {
                               color: Colors.white,
                               width: 4,
                             ),
-                            image: const DecorationImage(
+                            image: DecorationImage(
                               image: NetworkImage(
-                                'https://ui-avatars.com/api/?name=Yuka&background=EB9CA0&color=fff&size=200',
+                                'https://ui-avatars.com/api/?name=${controller.userName.value}&background=EB9CA0&color=fff&size=200',
                               ),
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ),
+                        )),
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -80,16 +77,28 @@ class ProfileView extends GetView<ProfileController> {
                           color: const Color(0xFFEB9CA0),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: const Column(
+                        child: Column(
                           children: [
-                            Text(
-                              'Yuka',
-                              style: TextStyle(
+                            // Nama user dari Firebase
+                            Obx(() => Text(
+                              controller.userName.value,
+                              style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
-                            ),
+                            )),
+                            const SizedBox(height: 5),
+                            // Email user dari Firebase
+                            Obx(() => controller.userEmail.value.isNotEmpty
+                                ? Text(
+                                    controller.userEmail.value,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.white70,
+                                    ),
+                                  )
+                                : const SizedBox()),
                           ],
                         ),
                       ),
@@ -122,21 +131,22 @@ class ProfileView extends GetView<ProfileController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Total Pengeluaran',
+                          'Saldo',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[600],
                           ),
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Rp 150.000',
-                          style: TextStyle(
+                        // Balance dari Firebase
+                        Obx(() => Text(
+                          'Rp ${controller.balance.value.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFFEB9CA0),
                           ),
-                        ),
+                        )),
                       ],
                     ),
                     ElevatedButton(
@@ -152,7 +162,7 @@ class ProfileView extends GetView<ProfileController> {
                           vertical: 12,
                         ),
                       ),
-                      child: const Text('Riwayat'),
+                      child: const Text('Riwayat Transaksi'),
                     ),
                   ],
                 ),
@@ -176,6 +186,11 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 child: Column(
                   children: [
+                    // _buildMenuItem(
+                    //   icon: Icons.history,
+                    //   title: 'Riwayat Transaksi',
+                    //   onTap: controller.goToTransactionHistory,
+                    // ),
                     _buildDivider(),
                     _buildMenuItem(
                       icon: Icons.favorite_border,
@@ -216,8 +231,10 @@ class ProfileView extends GetView<ProfileController> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: controller.logout,
+                child: Obx(() => OutlinedButton(
+                  onPressed: controller.isLoading.value 
+                      ? null 
+                      : controller.logout,
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.red,
                     side: const BorderSide(color: Colors.red),
@@ -226,14 +243,23 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: const Text(
-                    'Keluar',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+                  child: controller.isLoading.value
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                          ),
+                        )
+                      : const Text(
+                          'Keluar',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                )),
               ),
               
               const SizedBox(height: 30),

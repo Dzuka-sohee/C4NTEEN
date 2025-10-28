@@ -6,6 +6,8 @@ import '../modules/edit_profile/bindings/edit_profile_binding.dart';
 import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/favorites/bindings/favorites_binding.dart';
 import '../modules/favorites/views/favorites_view.dart';
+import '../modules/forgot_passsword/bindings/forgot_passsword_binding.dart';
+import '../modules/forgot_passsword/views/forgot_passsword_view.dart';
 import '../modules/help/bindings/help_binding.dart';
 import '../modules/help/views/help_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.MENU_DETAIL,
       page: () => const MenuDetailView(),
       binding: MenuDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
     ),
   ];
 }

@@ -11,193 +11,213 @@ class LandingView extends GetView<LandingController> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFECC0),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Obx(() {
+        // Show loading indicator while fetching data
+        if (controller.isLoading.value) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFE97777)),
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          onRefresh: controller.refreshData,
+          color: const Color(0xFFE97777),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Header dengan data dari Firebase
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/absenn.jpg'),
-                          radius: 20,
-                        ),
-                        const SizedBox(width: 8),
-                        Obx(() => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  controller.userName.value,
-                                  style: textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  controller.userPhone.value,
-                                  style: textTheme.bodySmall?.copyWith(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.notifications),
-                      onPressed: controller.onNotificationPressed,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-
-                // Total Pengeluaran
-                Obx(() => Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFE8A9B),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Total Pengeluaran",
-                            style: textTheme.bodyMedium?.copyWith(
-                              color: Colors.white,
-                              fontSize: 14,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            controller.totalExpense.value,
-                            style: textTheme.headlineSmall?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              _buildStatChip(
-                                  "${controller.totalOrders.value} Pesanan",
-                                  Colors.white,
-                                  textTheme),
-                              _buildStatChip(
-                                  "${controller.totalReturned.value} Dikembalikan",
-                                  Colors.white,
-                                  textTheme),
-                              _buildStatChip(
-                                  "${controller.totalCancelled.value} Dibatalkan",
-                                  Colors.white,
-                                  textTheme),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
-                const SizedBox(height: 24),
-
-                // Kategori
-                Text(
-                  "Kategori",
-                  style: textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 12),
-
-                SizedBox(
-                  height: 80,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.categories.length,
-                    itemBuilder: (context, index) {
-                      final category = controller.categories[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Column(
+                        Row(
                           children: [
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(category['image']!),
-                              radius: 25,
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              category['name']!,
-                              style:
-                                  textTheme.bodySmall?.copyWith(fontSize: 12),
-                            ),
+                            Obx(() => CircleAvatar(
+                              backgroundImage: controller.userEmail.value.isNotEmpty
+                                  ? NetworkImage(
+                                      'https://ui-avatars.com/api/?name=${controller.userName.value}&background=EB9CA0&color=fff&size=100',
+                                    )
+                                  : const AssetImage('assets/images/absenn.jpg') as ImageProvider,
+                              radius: 20,
+                            )),
+                            const SizedBox(width: 8),
+                            Obx(() => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      controller.userName.value,
+                                      style: textTheme.bodyLarge?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.userPhone.value.isNotEmpty
+                                          ? controller.userPhone.value
+                                          : controller.userEmail.value,
+                                      style: textTheme.bodySmall?.copyWith(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                )),
                           ],
                         ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 24),
+                        IconButton(
+                          icon: const Icon(Icons.notifications),
+                          onPressed: controller.onNotificationPressed,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
 
-                // Rekomendasi
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                    // Total Pengeluaran dari Firebase
+                    Obx(() => Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFE8A9B),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Total Pengeluaran",
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                controller.totalExpense.value,
+                                style: textTheme.headlineSmall?.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  _buildStatChip(
+                                      "${controller.totalOrders.value} Pesanan",
+                                      Colors.white,
+                                      textTheme),
+                                  _buildStatChip(
+                                      "${controller.totalReturned.value} Dikembalikan",
+                                      Colors.white,
+                                      textTheme),
+                                  _buildStatChip(
+                                      "${controller.totalCancelled.value} Dibatalkan",
+                                      Colors.white,
+                                      textTheme),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )),
+                    const SizedBox(height: 24),
+
+                    // Kategori
                     Text(
-                      "Rekomendasi",
+                      "Kategori",
                       style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
                     ),
-                    TextButton(
-                      onPressed: controller.onSeeAllPressed,
-                      child: Text(
-                        "Lihat semua >",
-                        style:
-                            textTheme.bodySmall?.copyWith(color: Colors.grey),
+                    const SizedBox(height: 12),
+
+                    SizedBox(
+                      height: 80,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.categories.length,
+                        itemBuilder: (context, index) {
+                          final category = controller.categories[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 12),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(category['image']!),
+                                  radius: 25,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  category['name']!,
+                                  style:
+                                      textTheme.bodySmall?.copyWith(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Rekomendasi
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Rekomendasi",
+                          style: textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: controller.onSeeAllPressed,
+                          child: Text(
+                            "Lihat semua >",
+                            style:
+                                textTheme.bodySmall?.copyWith(color: Colors.grey),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+
+                    // GridView
+                    GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 0.68,
+                      ),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.menuItems.length,
+                      itemBuilder: (context, index) {
+                        final item = controller.menuItems[index];
+                        return _buildMenuCard(
+                          context,
+                          item['image'] as String,
+                          item['name'] as String,
+                          item['priceFormatted'] as String,
+                          () => controller.onOrderPressed(index),
+                          textTheme,
+                        );
+                      },
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-
-                // GridView
-                GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.68,
-                  ),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.menuItems.length,
-                  itemBuilder: (context, index) {
-                    final item = controller.menuItems[index];
-                    return _buildMenuCard(
-                      context,
-                      item['image'] as String,
-                      item['name'] as String,
-                      item['priceFormatted']
-                          as String, // gunakan priceFormatted biar format rupiah
-                      () => controller.onOrderPressed(index),
-                      textTheme,
-                    );
-                  },
-                ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -221,16 +241,14 @@ class LandingView extends GetView<LandingController> {
     TextTheme textTheme,
   ) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16), // ✅ radius di semua sisi
+      borderRadius: BorderRadius.circular(16),
       child: Container(
-        color: Colors.transparent, // ✅ background transparan
+        color: Colors.transparent,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Gambar dengan radius penuh
             ClipRRect(
-              borderRadius:
-                  BorderRadius.circular(16), // ✅ gambar ikut melengkung
+              borderRadius: BorderRadius.circular(16),
               child: Image.asset(
                 image,
                 height: 150,
@@ -240,7 +258,6 @@ class LandingView extends GetView<LandingController> {
             ),
             const SizedBox(height: 8),
 
-            // Nama dan harga produk
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
@@ -269,7 +286,6 @@ class LandingView extends GetView<LandingController> {
             ),
             const SizedBox(height: 12),
 
-            // Tombol pesan
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: SizedBox(

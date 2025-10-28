@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280383455653",
+    "project_id": "c4nteen-efa2a",
+    "storage_bucket": "c4nteen-efa2a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280383455653:android:38ec0c623d9da3193a284c",
+        "android_client_info": {
+          "package_name": "com.C4NTEEN.c4nteen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhV2yr_7Yonv1XKfylt-Mj_jFz9p9wPc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // Generate dengan: flutterfire configure
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  // Pastikan Flutter binding sudah diinisialisasi
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
   runApp(const MyApp());
 }
 
@@ -13,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'C4nteen',
+      title: 'C4NTEEN',
       theme: ThemeData(
         fontFamily: 'Baloo 2',
         scaffoldBackgroundColor: const Color(0xFFFFECC0),
@@ -58,7 +68,9 @@ class _SplashWrapperState extends State<SplashWrapper> {
     return const Scaffold(
       backgroundColor: Color(0xFFFFECC0),
       body: Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFE97777)),
+        ),
       ),
     );
   }

@@ -10,7 +10,7 @@ class RegisterView extends GetView<RegisterController> {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color(0xFFF3F3F3),
       body: Column(
         children: [
           const SizedBox(height: 60),

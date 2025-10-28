@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class LoginView extends GetView<LoginController> {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0), // warna krem muda
+      backgroundColor: const Color(0xFFFFECC0),
       body: Column(
         children: [
           const SizedBox(height: 60),
@@ -33,10 +34,9 @@ class LoginView extends GetView<LoginController> {
           ),
           const SizedBox(height: 20),
 
-          // Spacer kecil agar jarak seimbang antara logo dan form
           const Spacer(),
 
-          // FORM BOX — 72% tinggi layar
+          // FORM BOX
           Container(
             height: screenHeight * 0.72,
             width: double.infinity,
@@ -71,11 +71,11 @@ class LoginView extends GetView<LoginController> {
                   const SizedBox(height: 28),
 
                   // Email
-                  _buildInputField(controller.emailController, hint: "Email"),
-                  const SizedBox(height: 20),
-
-                  // Username
-                  _buildInputField(controller.usernameController, hint: "Username"),
+                  _buildInputField(
+                    controller.emailController,
+                    hint: "Email",
+                    keyboardType: TextInputType.emailAddress,
+                  ),
                   const SizedBox(height: 20),
 
                   // Password
@@ -95,7 +95,25 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  
+                  // TOMBOL LUPA PASSWORD ⭐ BARU
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () => Get.toNamed(Routes.FORGOT_PASSSWORD),
+                      child: const Text(
+                        'Lupa Password?',
+                        style: TextStyle(
+                          fontFamily: 'Baloo 2',
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 20),
 
                   // Tombol Masuk
                   Obx(
@@ -214,11 +232,17 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget _buildInputField(TextEditingController controller,
-      {required String hint, bool obscureText = false, Widget? suffixIcon}) {
+  Widget _buildInputField(
+    TextEditingController controller, {
+    required String hint,
+    bool obscureText = false,
+    Widget? suffixIcon,
+    TextInputType? keyboardType,
+  }) {
     return TextField(
       controller: controller,
       obscureText: obscureText,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.white70),
