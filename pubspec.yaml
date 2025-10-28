@@ -29,6 +29,17 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/Logo C4NTEEN.png"  # Path ke icon Anda
+  min_sdk_android: 21
+  
+  # Opsional: Adaptive icon untuk Android
+  # adaptive_icon_background: "#FFECC0"  # Warna background
+  # adaptive_icon_foreground: "assets/icon/app_icon_foreground.png"
 
 
   flutter_lints: ^6.0.0

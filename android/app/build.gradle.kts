@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
@@ -8,8 +7,9 @@ plugins {
 
 android {
     namespace = "com.C4NTEEN.c4nteen"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36  // ✅ Update ke SDK terbaru
     ndkVersion = "29.0.13113456"
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -20,36 +20,43 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.C4NTEEN.c4nteen"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        targetSdk = 36  // ✅ Samakan dengan compileSdk
+        versionCode = 1
+        versionName = "1.0"
+        multiDexEnabled = true
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
-        }
+    release {
+        signingConfig = signingConfigs.getByName("debug")
+
+        // ✅ Nonaktifkan shrink & minify
+        isMinifyEnabled = false
+        isShrinkResources = false
     }
 }
 
-dependencies {
-    // Import Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+}
 
-    // Tambahkan produk Firebase yang kamu gunakan
+dependencies {
+    // ✅ Firebase BoM (versi terbaru kompatibel dengan SDK 36)
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+    // Firebase modules
     implementation("com.google.firebase:firebase-analytics")
-    // Misal mau pakai Auth atau Firestore, tambahkan juga:
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
+
+    // ✅ Google Sign-In (kompatibel dengan SDK 36)
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }
 
 flutter {
     source = "../.."
 }
+
+// ✅ PENTING: Plugin Google Services HARUS di paling bawah
+apply(plugin = "com.google.gms.google-services")

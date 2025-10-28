@@ -1,5 +1,18 @@
+// ✅ Pastikan hanya ada satu blok plugins di atas
 plugins {
-    id("com.google.gms.google-services") version "4.4.4" apply false
+    // Versi ini harus sama dengan versi di classpath
+}
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Versi Gradle plugin (boleh disesuaikan dengan yang terbaru di project-mu)
+        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("com.google.gms:google-services:4.3.15") // harus sama dengan di atas
+    }
 }
 
 allprojects {
@@ -9,17 +22,16 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+// ✅ Bagian ini aman — mengatur folder build jadi lebih rapi
+val newBuildDir = rootProject.layout.buildDirectory.dir("../../build").get()
+rootProject.layout.buildDirectory.set(newBuildDir)
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    val newSubprojectBuildDir = newBuildDir.dir(project.name)
+    project.layout.buildDirectory.set(newSubprojectBuildDir)
 }
 
+// ✅ Pastikan clean task tetap ada
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
