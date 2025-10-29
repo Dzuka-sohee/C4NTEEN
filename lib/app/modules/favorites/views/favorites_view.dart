@@ -8,9 +8,9 @@ class FavoritesView extends GetView<FavoritesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFECC0),
+        backgroundColor: const Color.fromARGB(224, 236, 246, 247),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -92,7 +92,7 @@ class FavoritesView extends GetView<FavoritesController> {
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? const Color(0xFFEB9CA0)
+                            ? const Color(0xFF00A9FF)
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -121,7 +121,7 @@ class FavoritesView extends GetView<FavoritesController> {
               if (controller.isLoading.value) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: Color(0xFFEB9CA0),
+                    color: Color(0xFF00A9FF),
                   ),
                 );
               }
@@ -265,7 +265,7 @@ class FavoritesView extends GetView<FavoritesController> {
                       ),
                       child: const Icon(
                         Icons.favorite,
-                        color: Color(0xFFEB9CA0),
+                        color: Color(0xFF00A9FF),
                         size: 18,
                       ),
                     ),
@@ -328,7 +328,7 @@ class FavoritesView extends GetView<FavoritesController> {
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFFEB9CA0),
+                              color: Color(0xFF00A9FF),
                             ),
                           ),
                         ),
@@ -336,7 +336,7 @@ class FavoritesView extends GetView<FavoritesController> {
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                             color: menu.isAvailable 
-                                ? const Color(0xFFEB9CA0)
+                                ? const Color(0xFF00A9FF)
                                 : Colors.grey[400],
                             borderRadius: BorderRadius.circular(8),
                           ),

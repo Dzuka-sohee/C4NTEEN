@@ -8,7 +8,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -34,7 +34,7 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://ui-avatars.com/api/?name=${controller.userName.value}&background=EB9CA0&color=fff&size=200',
+                                'https://ui-avatars.com/api/?name=${controller.userName.value}&background=00A9FF&color=fff&size=200',
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -49,14 +49,14 @@ class ProfileView extends GetView<ProfileController> {
                               color: Colors.white,
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: const Color(0xFFEB9CA0),
+                                color: const Color(0xFF00A9FF),
                                 width: 2,
                               ),
                             ),
                             child: const Icon(
                               Icons.camera_alt,
                               size: 16,
-                              color: Color(0xFFEB9CA0),
+                              color: Color(0xFF00A9FF),
                             ),
                           ),
                         ),
@@ -74,7 +74,7 @@ class ProfileView extends GetView<ProfileController> {
                           right: 20,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFEB9CA0),
+                          color: const Color(0xFF00A9FF),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
@@ -144,7 +144,7 @@ class ProfileView extends GetView<ProfileController> {
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFFEB9CA0),
+                            color: Color(0xFF00A9FF),
                           ),
                         )),
                       ],
@@ -152,7 +152,7 @@ class ProfileView extends GetView<ProfileController> {
                     ElevatedButton(
                       onPressed: controller.topUp,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFEB9CA0),
+                        backgroundColor: const Color(0xFF00A9FF),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -295,12 +295,12 @@ class ProfileView extends GetView<ProfileController> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFECC0).withOpacity(0.5),
+                color: const Color.fromARGB(255, 185, 221, 245).withOpacity(0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 icon,
-                color: const Color(0xFFEB9CA0),
+                color: const Color(0xFF00A9FF),
                 size: 22,
               ),
             ),

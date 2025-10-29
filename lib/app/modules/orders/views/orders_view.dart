@@ -8,7 +8,7 @@ class OrdersView extends GetView<OrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: SafeArea(
         child: Column(
           children: [
@@ -35,7 +35,7 @@ class OrdersView extends GetView<OrdersController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            icon: const Icon(Icons.arrow_back, color: Color(0xFFE07B7B)),
+            icon: const Icon(Icons.arrow_back, color: Color(0xFF00A9FF)),
             onPressed: () => Get.back(),
           ),
           const Text(
@@ -43,11 +43,11 @@ class OrdersView extends GetView<OrdersController> {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
-              color: Color(0xFFE07B7B),
+              color: Color(0xFF00A9FF),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.search, color: Color(0xFFE07B7B)),
+            icon: const Icon(Icons.search, color: Color(0xFF00A9FF)),
             onPressed: () {
               // Implement search
             },
@@ -68,7 +68,7 @@ class OrdersView extends GetView<OrdersController> {
           height: 44,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color(0xFFE88B8B), width: 1.5),
+            border: Border.all(color: const Color(0xFF00A9FF), width: 1.5),
           ),
           clipBehavior: Clip.hardEdge,
           child: Stack(
@@ -88,7 +88,7 @@ class OrdersView extends GetView<OrdersController> {
                     duration: const Duration(milliseconds: 350),
                     curve: Curves.easeInOutCubic,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE88B8B),
+                      color: const Color(0xFF00A9FF),
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
@@ -115,7 +115,7 @@ class OrdersView extends GetView<OrdersController> {
                             fontWeight: FontWeight.w600,
                             color: isSelected
                                 ? Colors.white
-                                : const Color(0xFFE88B8B),
+                                : const Color(0xFF00A9FF),
                           ),
                           child: Text(tabs[index]),
                         ),
@@ -140,10 +140,10 @@ class OrdersView extends GetView<OrdersController> {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected ? const Color(0xFFE88B8B) : Colors.transparent,
+            color: isSelected ? const Color(0xFF00A9FF) : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: const Color(0xFFE88B8B),
+              color: const Color(0xFF00A9FF),
               width: 1.5,
             ),
           ),
@@ -153,7 +153,7 @@ class OrdersView extends GetView<OrdersController> {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: isSelected ? Colors.white : const Color(0xFFE88B8B),
+              color: isSelected ? Colors.white : const Color(0xFF00A9FF),
             ),
           ),
         ),
@@ -208,7 +208,7 @@ class OrdersView extends GetView<OrdersController> {
         color: Colors.white.withOpacity(0.6),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: const Color(0xFFD4A574),
+          color: const Color(0xFF89CFF3),
           width: 1.5,
         ),
       ),
@@ -297,14 +297,14 @@ class OrdersView extends GetView<OrdersController> {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFFE88B8B)),
+          border: Border.all(color: const Color(0xFF00A9FF)),
           borderRadius: BorderRadius.circular(6),
         ),
         child: const Text(
           'Take Away',
           style: TextStyle(
             fontSize: 12,
-            color: Color(0xFFE88B8B),
+            color: Color(0xFF00A9FF),
           ),
         ),
       );
@@ -315,14 +315,14 @@ class OrdersView extends GetView<OrdersController> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFE88B8B)),
+              border: Border.all(color: const Color(0xFF00A9FF)),
               borderRadius: BorderRadius.circular(6),
             ),
             child: const Text(
               'Pick Up',
               style: TextStyle(
                 fontSize: 12,
-                color: Color(0xFFE88B8B),
+                color: Color(0xFF00A9FF),
               ),
             ),
           ),
@@ -332,14 +332,14 @@ class OrdersView extends GetView<OrdersController> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFFE88B8B)),
+                border: Border.all(color: const Color(0xFF00A9FF)),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: const Text(
                 'Review',
                 style: TextStyle(
                   fontSize: 12,
-                  color: Color(0xFFE88B8B),
+                  color: Color(0xFF00A9FF),
                 ),
               ),
             ),
@@ -351,7 +351,7 @@ class OrdersView extends GetView<OrdersController> {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
-          color: const Color(0xFFE88B8B),
+          color: const Color(0xFF00A9FF),
           borderRadius: BorderRadius.circular(6),
         ),
         child: const Text(
@@ -381,8 +381,8 @@ class OrdersView extends GetView<OrdersController> {
           Obx(() => Switch(
                 value: controller.reminderEnabled.value,
                 onChanged: controller.toggleReminder,
-                activeColor: const Color(0xFFE88B8B),
-                activeTrackColor: const Color(0xFFE88B8B).withOpacity(0.5),
+                activeColor: const Color(0xFF00A9FF),
+                activeTrackColor: const Color(0xFF00A9FF).withOpacity(0.5),
               )),
         ],
       ),

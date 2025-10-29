@@ -9,9 +9,9 @@ class NotificationsView extends GetView<NotificationsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFECC0),
+        backgroundColor: const Color.fromARGB(224, 236, 246, 247),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -58,7 +58,7 @@ class NotificationsView extends GetView<NotificationsController> {
                 value: 'mark_all_read',
                 child: Row(
                   children: [
-                    Icon(Icons.done_all, size: 20, color: Color(0xFFEB9CA0)),
+                    Icon(Icons.done_all, size: 20, color: Color(0xFF00A9FF)),
                     SizedBox(width: 10),
                     Text('Tandai Semua Dibaca'),
                   ],
@@ -105,7 +105,7 @@ class NotificationsView extends GetView<NotificationsController> {
                       margin: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? const Color(0xFFEB9CA0)
+                            ? const Color(0xFF00A9FF)
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -220,7 +220,7 @@ class NotificationsView extends GetView<NotificationsController> {
             border: Border.all(
               color: notification.isRead 
                   ? Colors.transparent 
-                  : const Color(0xFFEB9CA0).withOpacity(0.3),
+                  : const Color(0xFF00A9FF).withOpacity(0.3),
               width: 1.5,
             ),
             boxShadow: [
@@ -319,7 +319,7 @@ class NotificationsView extends GetView<NotificationsController> {
                   width: 8,
                   height: 8,
                   decoration: const BoxDecoration(
-                    color: Color(0xFFEB9CA0),
+                    color: Color(0xFF00A9FF),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -333,7 +333,7 @@ class NotificationsView extends GetView<NotificationsController> {
   Color _getTypeColor(String type) {
     switch (type) {
       case 'Pesanan':
-        return const Color(0xFFEB9CA0);
+        return const Color(0xFF00A9FF);
       case 'Promo':
         return Colors.orange;
       case 'Sistem':

@@ -8,9 +8,9 @@ class HelpView extends GetView<HelpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFECC0),
+        backgroundColor: const Color.fromARGB(224, 236, 246, 247),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -52,7 +52,7 @@ class HelpView extends GetView<HelpController> {
                 hintStyle: TextStyle(color: Colors.grey[400]),
                 prefixIcon: const Icon(
                   Icons.search,
-                  color: Color(0xFFEB9CA0),
+                  color: Color(0xFF00A9FF),
                 ),
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.symmetric(
@@ -103,7 +103,7 @@ class CategoryFilterWidget extends GetView<HelpController> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? const Color(0xFFEB9CA0)
+                      ? const Color(0xFF00A9FF)
                       : Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -263,7 +263,7 @@ class FaqItemWidget extends GetView<HelpController> {
                       isExpanded
                           ? Icons.keyboard_arrow_up
                           : Icons.keyboard_arrow_down,
-                      color: const Color(0xFFEB9CA0),
+                      color: const Color(0xFF00A9FF),
                     ),
                   ],
                 ),
@@ -302,7 +302,7 @@ class FaqItemWidget extends GetView<HelpController> {
   Color _getCategoryColor(String category) {
     switch (category) {
       case 'Pesanan':
-        return const Color(0xFFEB9CA0);
+        return const Color(0xFF00A9FF);
       case 'Pembayaran':
         return Colors.green;
       case 'Akun':

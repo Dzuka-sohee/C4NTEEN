@@ -10,20 +10,20 @@ class LandingView extends GetView<LandingController> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: Obx(() {
         // Show loading indicator while fetching data
         if (controller.isLoading.value) {
           return const Center(
             child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFE97777)),
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF00A9FF)),
             ),
           );
         }
 
         return RefreshIndicator(
           onRefresh: controller.refreshData,
-          color: const Color(0xFFE97777),
+          color: const Color(0xFF00A9FF),
           child: SafeArea(
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
@@ -39,13 +39,16 @@ class LandingView extends GetView<LandingController> {
                         Row(
                           children: [
                             Obx(() => CircleAvatar(
-                              backgroundImage: controller.userEmail.value.isNotEmpty
-                                  ? NetworkImage(
-                                      'https://ui-avatars.com/api/?name=${controller.userName.value}&background=EB9CA0&color=fff&size=100',
-                                    )
-                                  : const AssetImage('assets/images/absenn.jpg') as ImageProvider,
-                              radius: 20,
-                            )),
+                                  backgroundImage:
+                                      controller.userEmail.value.isNotEmpty
+                                          ? NetworkImage(
+                                              'https://ui-avatars.com/api/?name=${controller.userName.value}&background=EB9CA0&color=fff&size=100',
+                                            )
+                                          : const AssetImage(
+                                                  'assets/images/absenn.jpg')
+                                              as ImageProvider,
+                                  radius: 20,
+                                )),
                             const SizedBox(width: 8),
                             Obx(() => Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,9 +83,9 @@ class LandingView extends GetView<LandingController> {
 
                     // Total Pengeluaran dari Firebase
                     Obx(() => Container(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFE8A9B),
+                            color: const Color(0xFF00A9FF),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Column(
@@ -95,7 +98,7 @@ class LandingView extends GetView<LandingController> {
                                   fontSize: 14,
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 12),
                               Text(
                                 controller.totalExpense.value,
                                 style: textTheme.headlineSmall?.copyWith(
@@ -103,22 +106,31 @@ class LandingView extends GetView<LandingController> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 16),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  _buildStatChip(
-                                      "${controller.totalOrders.value} Pesanan",
-                                      Colors.white,
-                                      textTheme),
-                                  _buildStatChip(
-                                      "${controller.totalReturned.value} Dikembalikan",
-                                      Colors.white,
-                                      textTheme),
-                                  _buildStatChip(
-                                      "${controller.totalCancelled.value} Dibatalkan",
-                                      Colors.white,
-                                      textTheme),
+                                  Expanded(
+                                    child: _buildStatChip(
+                                        "${controller.totalOrders.value} Pesanan",
+                                        Colors.white,
+                                        textTheme),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: _buildStatChip(
+                                        "${controller.totalReturned.value} Dikembalikan",
+                                        Colors.white,
+                                        textTheme),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: _buildStatChip(
+                                        "${controller.totalCancelled.value} Dibatalkan",
+                                        Colors.white,
+                                        textTheme),
+                                  ),
                                 ],
                               ),
                             ],
@@ -137,25 +149,26 @@ class LandingView extends GetView<LandingController> {
                     const SizedBox(height: 12),
 
                     SizedBox(
-                      height: 80,
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: controller.categories.length,
                         itemBuilder: (context, index) {
                           final category = controller.categories[index];
                           return Padding(
-                            padding: const EdgeInsets.only(right: 12),
+                            padding: const EdgeInsets.only(right: 16),
                             child: Column(
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: NetworkImage(category['image']!),
-                                  radius: 25,
+                                  backgroundImage:
+                                      NetworkImage(category['image']!),
+                                  radius: 32,
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 8),
                                 Text(
                                   category['name']!,
-                                  style:
-                                      textTheme.bodySmall?.copyWith(fontSize: 12),
+                                  style: textTheme.bodySmall
+                                      ?.copyWith(fontSize: 12),
                                 ),
                               ],
                             ),
@@ -180,8 +193,8 @@ class LandingView extends GetView<LandingController> {
                           onPressed: controller.onSeeAllPressed,
                           child: Text(
                             "Lihat semua >",
-                            style:
-                                textTheme.bodySmall?.copyWith(color: Colors.grey),
+                            style: textTheme.bodySmall
+                                ?.copyWith(color: Colors.grey),
                           ),
                         ),
                       ],
@@ -190,11 +203,12 @@ class LandingView extends GetView<LandingController> {
 
                     // GridView
                     GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
-                        childAspectRatio: 0.68,
+                        childAspectRatio: 0.75,
                       ),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -211,6 +225,7 @@ class LandingView extends GetView<LandingController> {
                         );
                       },
                     ),
+                    const SizedBox(height: 80), // Extra space untuk bottom nav
                   ],
                 ),
               ),
@@ -243,73 +258,81 @@ class LandingView extends GetView<LandingController> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        color: Colors.transparent,
+        color: Colors.white, // ubah background jadi putih
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
-                image,
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(height: 8),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    price,
-                    style: textTheme.bodySmall?.copyWith(
-                      color: Colors.grey[800],
-                      fontSize: 13,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: onPressed,
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    side: const BorderSide(color: Colors.black, width: 1),
-                    foregroundColor: Colors.black,
-                  ),
-                  child: Text(
-                    "Pesan",
-                    style: textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                    ),
-                  ),
+            Expanded(
+              flex: 6,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  image,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
+            const SizedBox(height: 8),
+            Expanded(
+              flex: 4,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Colors.black, // teks putih
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          price,
+                          style: textTheme.bodySmall?.copyWith(
+                            color: Colors.black, // teks putih
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 36,
+                      child: ElevatedButton(
+                        onPressed: onPressed,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color(0xFF00A9FF), // tombol biru
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          "Pesan",
+                          style: textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
           ],
         ),
       ),

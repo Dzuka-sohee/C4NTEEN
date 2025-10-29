@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../keranjang/controllers/keranjang_controller.dart';
 
 class MenuPageController extends GetxController {
   final selectedCategory = 'Semua'.obs;
@@ -149,6 +150,12 @@ class MenuPageController extends GetxController {
     },
   ];
 
+  @override
+  void onInit() {
+    super.onInit();
+    updateCartCount();
+  }
+
   List<Map<String, dynamic>> get filteredMenuItems {
     var items = allMenuItems.where((item) {
       final matchesCategory = selectedCategory.value == 'Semua' ||
@@ -167,6 +174,11 @@ class MenuPageController extends GetxController {
     update();
   }
 
+  void goToCart() {
+    // Use Routes.KERANJANG instead of string path
+    Get.toNamed(Routes.KERANJANG);
+  }
+
   void updateSearchQuery(String query) {
     searchQuery.value = query;
     update();
@@ -175,12 +187,11 @@ class MenuPageController extends GetxController {
   void onOrderPressed(Map<String, dynamic> item) async {
     if (item['available'] == true) {
       // Navigate to detail menu
-      final result = await Get.toNamed('/menu-detail', arguments: item);
-      
+      final result = await Get.toNamed(Routes.MENU_DETAIL, arguments: item);
+
       // Handle result from detail page (if item added to cart)
       if (result != null) {
-        cartItemCount.value++;
-        update();
+        updateCartCount();
       }
     } else {
       Get.snackbar(
@@ -194,9 +205,22 @@ class MenuPageController extends GetxController {
     }
   }
 
-  void goToCart() {
-    if (cartItemCount.value > 0) {
-      Get.snackbar('Keranjang', 'Menuju halaman keranjang');
+  // Update cart count from KeranjangController
+  void updateCartCount() {
+    try {
+      if (Get.isRegistered<KeranjangController>()) {
+        final keranjangController = Get.find<KeranjangController>();
+        cartItemCount.value = keranjangController.totalItems;
+        update();
+      }
+    } catch (e) {
+      print('Error updating cart count: $e');
     }
   }
+}
+
+// Import Routes from app_routes
+abstract class Routes {
+  static const KERANJANG = '/keranjang';
+  static const MENU_DETAIL = '/menu-detail';
 }

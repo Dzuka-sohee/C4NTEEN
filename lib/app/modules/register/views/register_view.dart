@@ -10,7 +10,7 @@ class RegisterView extends GetView<RegisterController> {
     final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F3F3),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: Column(
         children: [
           const SizedBox(height: 60),
@@ -18,19 +18,19 @@ class RegisterView extends GetView<RegisterController> {
           // Logo dan judul
           Image.asset(
             'assets/images/Logo C4NTEEN.png',
-            width: 80,
-            height: 80,
+            width: 150,
+            height: 150,
           ),
           const SizedBox(height: 10),
-          const Text(
-            'C4NTEEN',
-            style: TextStyle(
-              fontFamily: 'Baloo 2',
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-              color: Color(0xFFE97777),
-            ),
-          ),
+          // const Text(
+          //   'C4NTEEN',
+          //   style: TextStyle(
+          //     fontFamily: 'Baloo 2',
+          //     fontWeight: FontWeight.bold,
+          //     fontSize: 22,
+          //     color: Color(0xFF00A9FF),
+          //   ),
+          // ),
           const SizedBox(height: 20),
 
           // Spacer kecil agar jarak seimbang antara logo dan form
@@ -41,7 +41,7 @@ class RegisterView extends GetView<RegisterController> {
             height: screenHeight * 0.72,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xFFFBC9B8),
+              color: Color(0xFF00A9FF),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40),
                 topRight: Radius.circular(40),
@@ -115,7 +115,7 @@ class RegisterView extends GetView<RegisterController> {
                             ? null
                             : controller.register,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE97777),
+                          backgroundColor: const Color.fromARGB(255, 32, 82, 245),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -178,7 +178,7 @@ class RegisterView extends GetView<RegisterController> {
                             'Google',
                             style: TextStyle(
                               fontFamily: 'Baloo 2',
-                              color: Color(0xFFE97777),
+                              color: Color(0xFF00A9FF),
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -206,7 +206,7 @@ class RegisterView extends GetView<RegisterController> {
                           "Masuk Disini",
                           style: TextStyle(
                             fontFamily: 'Baloo 2',
-                            color: Color(0xFFE97777),
+                            color: Color.fromARGB(255, 32, 82, 245),
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),

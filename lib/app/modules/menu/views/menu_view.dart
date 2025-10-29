@@ -11,9 +11,9 @@ class MenuView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFECC0),
+        backgroundColor: const Color.fromARGB(224, 236, 246, 247),
         elevation: 0,
         title: Text(
           'Menu Kantin',
@@ -83,7 +83,7 @@ class _CartButton extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(4),
                   decoration: const BoxDecoration(
-                    color: Color(0xFFFE8A9B),
+                    color: Color(0xFF00A9FF),
                     shape: BoxShape.circle,
                   ),
                   constraints: const BoxConstraints(
@@ -173,7 +173,7 @@ class _CategoryFilter extends StatelessWidget {
                   selected: isSelected,
                   onSelected: (_) => controller.selectCategory(category),
                   backgroundColor: Colors.white,
-                  selectedColor: const Color(0xFFFE8A9B),
+                  selectedColor: const Color(0xFF00A9FF),
                   labelStyle: textTheme.bodyMedium?.copyWith(
                     color: isSelected ? Colors.white : Colors.black,
                     fontWeight:
@@ -272,8 +272,16 @@ class _MenuCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.transparent,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +290,10 @@ class _MenuCard extends StatelessWidget {
           Stack(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
                 child: Image.asset(
                   item['image']!,
                   height: 140,
@@ -295,7 +306,10 @@ class _MenuCard extends StatelessWidget {
               if (!isAvailable)
                 Positioned.fill(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.5),
@@ -376,7 +390,7 @@ class _MenuCard extends StatelessWidget {
                   Text(
                     item['priceFormatted']!,
                     style: textTheme.bodyMedium?.copyWith(
-                      color: const Color(0xFFFE8A9B),
+                      color: const Color(0xFF00A9FF),
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                     ),
@@ -387,27 +401,27 @@ class _MenuCard extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     height: 32,
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: isAvailable ? onPressed : null,
-                      style: OutlinedButton.styleFrom(
+                      style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 4),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        side: BorderSide(
-                          color: isAvailable
-                              ? Colors.black
-                              : Colors.grey[400]!,
-                          width: 1,
-                        ),
-                        foregroundColor:
-                            isAvailable ? Colors.black : Colors.grey[400],
+                        backgroundColor: isAvailable
+                            ? const Color(0xFF00A9FF)
+                            : Colors.grey[400],
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        disabledBackgroundColor: Colors.grey[400],
+                        disabledForegroundColor: Colors.white,
                       ),
                       child: Text(
                         isAvailable ? 'Pesan' : 'Habis',
                         style: textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
+                          color: Colors.white,
                         ),
                       ),
                     ),

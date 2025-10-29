@@ -11,7 +11,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: Stack(
         children: [
           // Content
@@ -61,7 +61,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                 ? Icons.favorite
                                 : Icons.favorite_border,
                             color: controller.isFavorite.value
-                                ? const Color(0xFFFE8A9B)
+                                ? const Color(0xFF00A9FF)
                                 : Colors.black,
                           ),
                           onPressed: controller.toggleFavorite,
@@ -176,7 +176,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                           vertical: 6,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFFFE8A9B)
+                                          color: const Color(0xFF00A9FF)
                                               .withOpacity(0.15),
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -185,7 +185,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                           controller.menuItem['category']!,
                                           style:
                                               textTheme.bodySmall?.copyWith(
-                                            color: const Color(0xFFFE8A9B),
+                                            color: const Color(0xFF00A9FF),
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
@@ -201,7 +201,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                             Container(
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFE8A9B).withOpacity(0.08),
+                                color: const Color(0xFF00A9FF).withOpacity(0.08),
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               child: Row(
@@ -222,7 +222,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                         controller.menuItem['priceFormatted']!,
                                         style: textTheme.headlineSmall?.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          color: const Color(0xFFFE8A9B),
+                                          color: const Color(0xFF00A9FF),
                                         ),
                                       ),
                                     ],
@@ -237,7 +237,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
-                                          color: const Color(0xFFFE8A9B).withOpacity(0.3),
+                                          color: const Color(0xFF00A9FF).withOpacity(0.3),
                                         ),
                                       ),
                                       child: Row(
@@ -342,7 +342,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                           ? controller.decrementQuantity
                                           : null,
                                       color: controller.quantity.value > 1
-                                          ? const Color(0xFFFE8A9B)
+                                          ? const Color(0xFF00A9FF)
                                           : Colors.grey[400],
                                       iconSize: 24,
                                     ),
@@ -364,7 +364,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                           style:
                                               textTheme.headlineMedium?.copyWith(
                                             fontWeight: FontWeight.bold,
-                                            color: const Color(0xFFFE8A9B),
+                                            color: const Color(0xFF00A9FF),
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
@@ -403,7 +403,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                       color: controller.quantity.value <
                                               (controller.menuItem['stock']
                                                   as int)
-                                          ? const Color(0xFFFE8A9B)
+                                          ? const Color(0xFF00A9FF)
                                           : Colors.grey[400],
                                       iconSize: 24,
                                     ),
@@ -478,7 +478,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: const BorderSide(
-                                    color: Color(0xFFFE8A9B),
+                                    color: Color(0xFF00A9FF),
                                     width: 2,
                                   ),
                                 ),
@@ -488,7 +488,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 120), // Space for buttons
+                      const SizedBox(height: 220), // Increased space for bottom sheet
                     ],
                   ),
                 ),
@@ -502,7 +502,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.only(
@@ -518,6 +518,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                 ],
               ),
               child: SafeArea(
+                top: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -525,7 +526,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                     Obx(() => Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFFE8A9B).withOpacity(0.1),
+                        color: const Color(0xFF00A9FF).withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Row(
@@ -546,7 +547,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                 controller.totalPriceFormatted,
                                 style: textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: const Color(0xFFFE8A9B),
+                                  color: const Color(0xFF00A9FF),
                                 ),
                               ),
                             ],
@@ -584,7 +585,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                               borderRadius: BorderRadius.circular(28),
                               border: Border.all(
                                 color: controller.menuItem['available'] as bool
-                                    ? const Color(0xFFFE8A9B)
+                                    ? const Color(0xFF00A9FF)
                                     : Colors.grey[300]!,
                                 width: 2,
                               ),
@@ -595,7 +596,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                   : null,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
-                                foregroundColor: const Color(0xFFFE8A9B),
+                                foregroundColor: const Color(0xFF00A9FF),
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(28),
@@ -610,7 +611,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                                     Icons.shopping_cart_outlined,
                                     size: 22,
                                     color: controller.menuItem['available'] as bool
-                                        ? const Color(0xFFFE8A9B)
+                                        ? const Color(0xFF00A9FF)
                                         : Colors.grey[400],
                                   ),
                                   const SizedBox(width: 8),
@@ -637,7 +638,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                               gradient: controller.menuItem['available'] as bool
                                   ? const LinearGradient(
                                       colors: [
-                                        Color(0xFFFE8A9B),
+                                        Color(0xFF00A9FF),
                                         Color(0xFFFE6B89),
                                       ],
                                     )
@@ -645,7 +646,7 @@ class MenuDetailView extends GetView<MenuDetailController> {
                               boxShadow: controller.menuItem['available'] as bool
                                   ? [
                                       BoxShadow(
-                                        color: const Color(0xFFFE8A9B)
+                                        color: const Color(0xFF00A9FF)
                                             .withOpacity(0.4),
                                         blurRadius: 12,
                                         offset: const Offset(0, 4),

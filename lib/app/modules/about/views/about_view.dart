@@ -8,9 +8,9 @@ class AboutView extends GetView<AboutController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFEB9CA0),
+        backgroundColor: const Color(0xFF00A9FF),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -33,7 +33,7 @@ class AboutView extends GetView<AboutController> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 30),
               decoration: const BoxDecoration(
-                color: Color(0xFFEB9CA0),
+                color: Color(0xFF00A9FF),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30),
@@ -58,7 +58,7 @@ class AboutView extends GetView<AboutController> {
                     child: const Icon(
                       Icons.restaurant_menu,
                       size: 50,
-                      color: Color(0xFFEB9CA0),
+                      color: Color(0xFF00A9FF),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -107,7 +107,7 @@ class AboutView extends GetView<AboutController> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFEB9CA0),
+                      color: Color(0xFF00A9FF),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -149,7 +149,7 @@ class AboutView extends GetView<AboutController> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFEB9CA0),
+                      color: Color(0xFF00A9FF),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -187,7 +187,7 @@ class AboutView extends GetView<AboutController> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFEB9CA0),
+                      color: Color(0xFF00A9FF),
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -343,7 +343,7 @@ class AboutView extends GetView<AboutController> {
             ),
             child: Icon(
               icon,
-              color: const Color(0xFFEB9CA0),
+              color: const Color(0xFF00A9FF),
               size: 22,
             ),
           ),

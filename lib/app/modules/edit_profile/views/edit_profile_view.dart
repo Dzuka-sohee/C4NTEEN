@@ -8,9 +8,9 @@ class EditProfileView extends GetView<EditProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFECC0),
+        backgroundColor: const Color.fromARGB(224, 236, 246, 247),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black87),
@@ -59,7 +59,7 @@ class EditProfileView extends GetView<EditProfileController> {
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFEB9CA0),
+                            color: const Color(0xFF00A9FF),
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: Colors.white,
@@ -85,7 +85,7 @@ class EditProfileView extends GetView<EditProfileController> {
                 child: const Text(
                   'Ubah Foto Profil',
                   style: TextStyle(
-                    color: Color(0xFFEB9CA0),
+                    color: Color(0xFF00A9FF),
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -171,7 +171,7 @@ class EditProfileView extends GetView<EditProfileController> {
                     ),
                     child: const Icon(
                       Icons.lock_outline,
-                      color: Color(0xFFEB9CA0),
+                      color: Color(0xFF00A9FF),
                       size: 24,
                     ),
                   ),
@@ -201,7 +201,7 @@ class EditProfileView extends GetView<EditProfileController> {
                       ? null 
                       : controller.saveProfile,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFEB9CA0),
+                    backgroundColor: const Color(0xFF00A9FF),
                     foregroundColor: Colors.white,
                     disabledBackgroundColor: Colors.grey[300],
                     shape: RoundedRectangleBorder(
@@ -263,7 +263,7 @@ class EditProfileView extends GetView<EditProfileController> {
           decoration: InputDecoration(
             prefixIcon: Icon(
               icon,
-              color: enabled ? const Color(0xFFEB9CA0) : Colors.grey,
+              color: enabled ? const Color(0xFF00A9FF) : Colors.grey,
               size: 22,
             ),
             filled: true,

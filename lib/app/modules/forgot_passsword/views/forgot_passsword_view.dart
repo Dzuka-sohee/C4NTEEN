@@ -8,12 +8,12 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFECC0),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFFE97777)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF00A9FF)),
           onPressed: () => Get.back(),
         ),
       ),
@@ -32,7 +32,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   fontFamily: 'Baloo 2',
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFFE97777),
+                  color: Color(0xFF00A9FF),
                 ),
               ),
               const SizedBox(height: 10),
@@ -65,7 +65,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFFE97777)),
+                    borderSide: const BorderSide(color: Color(0xFF00A9FF)),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -96,7 +96,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         ? null
                         : controller.sendResetPasswordEmail,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE97777),
+                      backgroundColor: const Color(0xFF00A9FF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

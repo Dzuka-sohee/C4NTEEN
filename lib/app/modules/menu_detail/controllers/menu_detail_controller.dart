@@ -68,7 +68,7 @@ class MenuDetailController extends GetxController {
         '${quantity.value}x ${menuItem['name']} ditambahkan ke keranjang',
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 2),
-        backgroundColor: const Color(0xFFFE8A9B),
+        backgroundColor: const Color(0xFF00A9FF),
         colorText: Colors.white,
       );
     }

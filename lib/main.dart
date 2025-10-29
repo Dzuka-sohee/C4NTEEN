@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'C4NTEEN',
       theme: ThemeData(
         fontFamily: 'Baloo 2',
-        scaffoldBackgroundColor: const Color(0xFFFFECC0),
+        scaffoldBackgroundColor: const Color(0xFFFFF5F5),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.pink,
           brightness: Brightness.light,

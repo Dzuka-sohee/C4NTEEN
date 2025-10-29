@@ -8,15 +8,15 @@ class WelcomeView extends GetView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF5F5),
+      backgroundColor: const Color.fromARGB(224, 236, 246, 247),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Logo
             Container(
-              width: 150,
-              height: 150,
+              width: 200,
+              height: 200,
               margin: const EdgeInsets.only(bottom: 40),
               child: Image.asset(
                 'assets/images/Logo C4NTEEN.png',
@@ -24,22 +24,22 @@ class WelcomeView extends GetView<WelcomeController> {
               ),
             ),
             // Welcome Text
-            const Text(
-              'C4NTEEN',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFE97777),
-                fontFamily: 'Baloo 2',
-              ),
-            ),
+            // const Text(
+            //   'C4NTEEN',
+            //   style: TextStyle(
+            //     fontSize: 28,
+            //     fontWeight: FontWeight.bold,
+            //     color: Color(0xFF00A9FF),
+            //     fontFamily: 'Baloo 2',
+            //   ),
+            // ),
             const SizedBox(height: 12),
             const Text(
               'Selamat Datang di\nC4NTEEN',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
-                color: Color(0xFFE97777),
+                color: Color(0xFF00A9FF),
                 fontFamily: 'Baloo 2',
               ),
             ),
@@ -51,7 +51,7 @@ class WelcomeView extends GetView<WelcomeController> {
               child: ElevatedButton(
                 onPressed: controller.goToLogin,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFBC9B8),
+                  backgroundColor: const Color(0xFF00A9FF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -75,7 +75,7 @@ class WelcomeView extends GetView<WelcomeController> {
               child: ElevatedButton(
                 onPressed: controller.goToRegister,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFBC9B8),
+                  backgroundColor: const Color(0xFF00A9FF),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
